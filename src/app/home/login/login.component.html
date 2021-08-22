@@ -1,10 +1,14 @@
 <h4 class="text-center">Login</h4>
-<form class="form mt-4">
+<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
     <div class="form-group mb-3">
-        <input class="form-control" type="text" placeholder="Digite seu usuário">
+        <input class="form-control" type="text" name="usuario" placeholder="Digite seu usuário" [(ngModel)]="usuario" #campoUsuario="ngModel" required>
+        <app-mensagem *ngIf="campoUsuario.invalid && campoUsuario.touched" mensagem="Por favor, digite o nome de usuário"></app-mensagem>
     </div>
     <div class="form-group mb-3">
-        <input class="form-control" type="text" placeholder="Digite sua senha">
+        <input class="form-control" type="password" name="senha" placeholder="Digite sua senha" [(ngModel)]="senha" #campoSenha="ngModel" required>
+        <app-mensagem *ngIf="campoSenha.invalid && campoSenha.touched" mensagem="Por favor, digite uma senha"></app-mensagem>
     </div>
-    <button class="btn btn-primary btn-block" type="submit">Login</button>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>
+
+<p>Ainda não possui conta? <a [routerLink]="['novoUsuario']">Cadastre-se</a></p>
