@@ -2,12 +2,16 @@
 <form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
     <div class="form-group mb-3">
         <input class="form-control" type="text" placeholder="Digite seu nome" formControlName="fullName">
+        <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.errors?.required && novoUsuarioForm.get('fullName')?.touched" mensagem="Por favor, digite seu nome"></app-mensagem>
     </div>
     <div class="form-group mb-3">
         <input class="form-control" type="text" placeholder="Digite seu e-mail" formControlName="email">
+        <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.required && novoUsuarioForm.get('email')?.touched" mensagem="Por favor, digite um e-mail"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.email && novoUsuarioForm.get('email')?.touched" mensagem="Formato de e-mail incorreto"></app-mensagem>
     </div>
     <div class="form-group mb-3">
         <input class="form-control" type="text" placeholder="Digite um nome de usuário" formControlName="userName">
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors && novoUsuarioForm.get('userName')?.touched" mensagem="Nome de usuário inválido"></app-mensagem>
     </div>
     <div class="form-group mb-3">
         <input class="form-control" type="password" placeholder="Digite uma senha" formControlName="password">
