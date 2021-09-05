@@ -11,12 +11,14 @@
     </div>
     <div class="form-group mb-3">
         <input class="form-control" type="text" placeholder="Digite um nome de usuário" formControlName="userName">
-        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors && novoUsuarioForm.get('userName')?.touched" mensagem="Nome de usuário inválido"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo && novoUsuarioForm.get('userName')?.touched" mensagem="O nome de usuário deve ser minúsculo"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.usuarioExistente" mensagem="Usuário já existente"></app-mensagem>
     </div>
     <div class="form-group mb-3">
         <input class="form-control" type="password" placeholder="Digite uma senha" formControlName="password">
+        <app-mensagem *ngIf="novoUsuarioForm.errors?.senhaIgualUsuario" mensagem="A senha deve ser diferente do nome de usuário"></app-mensagem>
     </div>
-    <button class="btn btn-primary btn-block">Cadastrar</button>
+    <button class="btn btn-primary btn-block" [disabled]="novoUsuarioForm.invalid">Cadastrar</button>
 </form>
 
 <p>Já possui uma conta? <a [routerLink]="['']">Login</a></p>
