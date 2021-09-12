@@ -1,0 +1,12 @@
+<p *ngIf="!games?.length" class="text-center text-muted">Você ainda não possui nenhum game cadastrado!</p>
+
+<div class="row">
+    <div *ngFor="let game of games" class="col-4">
+        <a [routerLink]="['/games', game.id]"></a>
+        <app-cartao>
+            <app-game [url]="game.url" [descricao]="game.description"></app-game>
+            <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2">{{ game.likes }}</i>
+            <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2">{{ game.comments }}</i>
+        </app-cartao>
+    </div>
+</div>
