@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
 import { Games } from '../game';
 import { GamesService } from '../games.service';
@@ -10,16 +12,16 @@ import { GamesService } from '../games.service';
 })
 export class ListaGamesComponent implements OnInit {
 
-  games!: Games;
+  games$!: Observable<Games>;
 
   constructor(private usuarioService: UsuarioService, private gamesService: GamesService) { }
 
   ngOnInit(): void {
-    this.usuarioService.retornaUsuario().subscribe((usuario) => {
-      const userName = usuario.name ?? '';
-      this.gamesService.listaGamesDoUsuario(userName).subscribe((games) => {
-        this.games = games;
+    this.games$ = this.usuarioService.retornaUsuario().pipe(
+      switchMap((usuario) => {
+        const userName = usuario.name ?? '';
+        return this.gamesService.listaGamesDoUsuario(userName);
       })
-    })
+    )
   }
 }

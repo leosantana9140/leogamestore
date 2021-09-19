@@ -1,1 +1,3 @@
-<app-grade-capas-games [games]="games"></app-grade-capas-games>
+<div *ngIf="games$ | async as games">
+    <app-grade-capas-games [games]="games"></app-grade-capas-games>
+</div>
