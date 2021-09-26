@@ -6,12 +6,14 @@ import { ListaGamesComponent } from './lista-games/lista-games.component';
 import { GameComponent } from './game/game.component';
 import { CartaoModule } from '../componentes/cartao/cartao.module';
 import { GradeCapasGamesComponent } from './grade-capas-games/grade-capas-games.component';
+import { DetalheGameComponent } from './detalhe-game/detalhe-game.component';
 
 @NgModule({
   declarations: [
     ListaGamesComponent,
     GameComponent,
-    GradeCapasGamesComponent
+    GradeCapasGamesComponent,
+    DetalheGameComponent
   ],
   imports: [
     CommonModule,
