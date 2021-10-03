@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenService } from '../autenticacao/token.service';
-import { Games } from './game';
+import { Game, Games } from './game';
 
 const API = environment.apiUrl;
 
@@ -19,6 +19,15 @@ export class GamesService {
     const headers = new HttpHeaders().append('x-access-token', token);
 
     return this.http.get<Games>(`${API}/${nomeUsuario}/photos`, {
+      headers
+    });
+  }
+
+  buscaPorId(id: number): Observable<Game> {
+    const token = this.tokenService.retornaToken();
+    const headers = new HttpHeaders().append('x-access-token', token);
+
+    return this.http.get<Game>(`${API}/photos/${id}`, {
       headers
     });
   }
