@@ -6,7 +6,14 @@
         <div class="col-lg-4">
             <small>
                 <p class="text-left break-work"> {{ game.description }} </p>
+                <i (click)="curtir()" class="fa fa-heart-o fa-2x mr-2 pull-left"> {{ game.likes }}</i>
+                <i class="fa fa-comment-o fa-2x mr-2 ml-2"> {{ game.comments }} </i>
+                <i (click)="excluir()" class="fa fa-trash-o fa-2x pull-right"></i>
             </small>
+            <app-comentarios [id]="gameId" *ngIf="game.allowComments; else warning"></app-comentarios>
+            <ng-template #warning>
+                <p>Este post não permite comentários</p>
+            </ng-template>
         </div>
     </div>
 </div>

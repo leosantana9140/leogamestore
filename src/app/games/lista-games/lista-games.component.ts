@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
@@ -12,16 +13,13 @@ import { GamesService } from '../games.service';
 })
 export class ListaGamesComponent implements OnInit {
 
-  games$!: Observable<Games>;
+  games!: Games;
 
-  constructor(private usuarioService: UsuarioService, private gamesService: GamesService) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.games$ = this.usuarioService.retornaUsuario().pipe(
-      switchMap((usuario) => {
-        const userName = usuario.name ?? '';
-        return this.gamesService.listaGamesDoUsuario(userName);
-      })
-    )
+    this.activatedRoute.params.subscribe((param) => {
+      this.games = this.activatedRoute.snapshot.data['games'];
+    });
   }
 }
