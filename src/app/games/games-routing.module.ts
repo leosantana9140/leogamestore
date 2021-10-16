@@ -4,6 +4,7 @@ import { DetalheGameComponent } from './detalhe-game/detalhe-game.component';
 
 import { ListaGamesComponent } from './lista-games/lista-games.component';
 import { ListaGamesResolver } from './lista-games/lista-games.resolver';
+import { NovoGameComponent } from './novo-game/novo-game.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
     resolve: {
       games: ListaGamesResolver
     }
+  },
+  {
+    path: 'novo',
+    component: NovoGameComponent
   },
   {
     path: ':gameId',

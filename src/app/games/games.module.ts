@@ -9,6 +9,7 @@ import { GradeCapasGamesComponent } from './grade-capas-games/grade-capas-games.
 import { DetalheGameComponent } from './detalhe-game/detalhe-game.component';
 import { ComentariosComponent } from './detalhe-game/comentarios/comentarios.component';
 import { SharedModule } from '../shared/shared.module';
+import { NovoGameComponent } from './novo-game/novo-game.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     GameComponent,
     GradeCapasGamesComponent,
     DetalheGameComponent,
-    ComentariosComponent
+    ComentariosComponent,
+    NovoGameComponent
   ],
   imports: [
     CommonModule,
